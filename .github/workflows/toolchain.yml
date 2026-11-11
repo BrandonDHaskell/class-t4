@@ -8,6 +8,9 @@ on:
     paths:
       - docker/toolchain/**
       - .github/workflows/toolchain.yml
+      # Pinning the digest or editing docs must not rebuild the image.
+      - "!docker/toolchain/DIGEST"
+      - "!docker/toolchain/README.md"
   workflow_dispatch:
 
 permissions:
