@@ -7,6 +7,7 @@
       "name": "drogon",
       "default-features": false
     },
-    "gtest"
+    "gtest",
+    "jsoncpp"
   ]
 }

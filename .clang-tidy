@@ -30,6 +30,8 @@ CheckOptions:
   readability-identifier-naming.VariableCase: lower_case
   readability-identifier-naming.ParameterCase: lower_case
   readability-identifier-naming.MemberCase: lower_case
+  readability-identifier-naming.PrivateMemberSuffix: _
+  readability-identifier-naming.ProtectedMemberSuffix: _
   readability-identifier-naming.ConstexprVariableCase: lower_case
   readability-identifier-naming.TypeAliasCase: lower_case
   readability-identifier-naming.TemplateParameterCase: CamelCase
