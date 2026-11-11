@@ -232,6 +232,7 @@ COPY --from=tools /opt/vcpkg /opt/vcpkg
 RUN ln -s gcc-16.2 /opt/gcc \
  && ln -s gcc-cross-16.2 /opt/gcc-cross \
  && ln -s llvm-23.1.1 /opt/llvm \
+ && ln -s gcc /opt/gcc-16.2/bin/cc \
  && ln -s cmake-4.4.3 /opt/cmake \
  && ln -s ninja-1.13.1 /opt/ninja \
  && mkdir -p /opt/bin \
@@ -244,9 +245,10 @@ RUN ln -s gcc-16.2 /opt/gcc \
  && echo /opt/gcc/lib64 > /etc/ld.so.conf.d/00-opt-gcc.conf \
  && ldconfig
 
+# No global CC/CXX: build systems that read them (OpenSSL's Configure, for one)
+# would use the native compiler even for aarch64 builds. GCC 16.2 is first on
+# PATH, with cc and c++ pointing at it.
 ENV PATH=/opt/gcc/bin:/opt/gcc-cross/bin:/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
-    CC=/opt/gcc/bin/gcc \
-    CXX=/opt/gcc/bin/g++ \
     SYSROOT=/opt/sysroot \
     QEMU_LD_PREFIX=/opt/sysroot \
     VCPKG_ROOT=/opt/vcpkg \

@@ -18,6 +18,9 @@ expect_version() {
 }
 
 expect_version gcc 16.2.0 "$(gcc --version | head -1)"
+expect_version cc 16.2.0 "$(cc --version | head -1)"
+expect_version c++ 16.2.0 "$(c++ --version | head -1)"
+[[ -z ${CC:-}${CXX:-} ]] || { echo "FAIL: CC/CXX must not be set in the image" >&2; exit 1; }
 expect_version aarch64-linux-gnu-g++ 16.2.0 "$(aarch64-linux-gnu-g++ --version | head -1)"
 expect_version clang-format 23.1.1 "$(clang-format --version)"
 expect_version clang-tidy 23.1.1 "$(clang-tidy --version | grep -i 'version')"
