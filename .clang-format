@@ -1,0 +1,15 @@
+---
+Language: Cpp
+BasedOnStyle: LLVM
+Standard: Latest
+ColumnLimit: 80
+IncludeBlocks: Regroup
+IncludeCategories:
+  # Project headers, then third-party, then the standard library.
+  - Regex: '^"'
+    Priority: 1
+  - Regex: '^<[a-z_]+/'
+    Priority: 2
+  - Regex: '^<'
+    Priority: 3
+...

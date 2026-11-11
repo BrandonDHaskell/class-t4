@@ -1,2 +1,7 @@
+# Build output and the vcpkg cache mounted at /cache
+/build/
+/.cache/
+
 # IDE config (per-developer, not project-shared)
 .idea/
+.vscode/

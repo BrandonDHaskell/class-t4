@@ -1,0 +1,12 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "class-t4",
+  "version-semver": "0.0.0",
+  "dependencies": [
+    {
+      "name": "drogon",
+      "default-features": false
+    },
+    "gtest"
+  ]
+}
