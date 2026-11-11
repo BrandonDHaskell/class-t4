@@ -17,6 +17,7 @@ class_t4_configure_target(class-t4)
 install(TARGETS class-t4 RUNTIME DESTINATION bin)
 
 if(CLASS_T4_BUILD_TESTS)
+  add_subdirectory(tests)
   add_test(NAME class-t4.version COMMAND class-t4 --version)
   set_tests_properties(class-t4.version PROPERTIES
     PASS_REGULAR_EXPRESSION "^class-t4 ${CLASS_T4_VERSION} ")

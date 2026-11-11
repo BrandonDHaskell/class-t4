@@ -171,6 +171,24 @@ result<void> read_ops(const Json::Value &root, ops_config &out) {
   return check_address("ops.address", out.address);
 }
 
+// jsoncpp reports errors over several lines; logs read better on one.
+std::string one_line(std::string_view text) {
+  std::string out;
+  bool pending_space = false;
+  for (const char c : text) {
+    if (c == '\n' || c == ' ' || c == '\t') {
+      pending_space = !out.empty();
+      continue;
+    }
+    if (pending_space) {
+      out += ' ';
+      pending_space = false;
+    }
+    out += c;
+  }
+  return out;
+}
+
 // Upper bound guards against typos (e.g. 400 instead of 4) on a 4-core host.
 constexpr unsigned max_threads = 64;
 
@@ -207,7 +225,8 @@ result<config> parse_config(std::string_view json) {
   Json::Value root;
   std::string errors;
   if (!Json::parseFromStream(builder, stream, &root, &errors)) {
-    return make_error(std::format("config: invalid JSON: {}", errors));
+    return make_error(
+        std::format("config: invalid JSON: {}", one_line(errors)));
   }
   if (!root.isObject()) {
     return make_error("config: top level must be a JSON object");

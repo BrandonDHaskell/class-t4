@@ -29,6 +29,23 @@ endfunction()
 option(CLASS_T4_BUILD_TESTS "Build unit and integration tests" ON)
 if(CLASS_T4_BUILD_TESTS)
   enable_testing()
+  find_package(GTest CONFIG REQUIRED)
+  include(GoogleTest)
+
+  # One GoogleTest executable per call. Discovery runs at test time (through
+  # the qemu emulator for cross builds), so every case is its own ctest test.
+  function(class_t4_add_unit_test name)
+    cmake_parse_arguments(PARSE_ARGV 1 arg "" "" "SOURCES;LIBRARIES")
+    add_executable(${name} ${arg_SOURCES})
+    target_link_libraries(${name} PRIVATE ${arg_LIBRARIES} GTest::gtest_main)
+    class_t4_configure_target(${name})
+    gtest_discover_tests(${name}
+      DISCOVERY_MODE PRE_TEST
+      DISCOVERY_TIMEOUT 60)
+  endfunction()
 endif()
 
 add_subdirectory(app)
+if(CLASS_T4_BUILD_TESTS)
+  add_subdirectory(tests/integration)
+endif()
