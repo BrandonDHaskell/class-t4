@@ -1,0 +1,60 @@
+{
+  "version": 10,
+  "cmakeMinimumRequired": { "major": 4, "minor": 0, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+      "cacheVariables": {
+        "VCPKG_INSTALLED_DIR": "${sourceDir}/build/vcpkg_installed/${presetName}",
+        "VCPKG_INSTALL_OPTIONS": "--x-buildtrees-root=/cache/vcpkg/buildtrees;--x-packages-root=/cache/vcpkg/packages;--clean-after-build",
+        "CLASS_T4_WERROR": "$env{CLASS_T4_WERROR}"
+      }
+    },
+    {
+      "name": "host-debug",
+      "displayName": "Native x86_64 debug with sanitizers and tests",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "VCPKG_TARGET_TRIPLET": "x64-linux",
+        "CLASS_T4_SANITIZERS": "ON",
+        "CLASS_T4_BUILD_TESTS": "ON"
+      }
+    },
+    {
+      "name": "rpi5-release",
+      "displayName": "aarch64 cross release for the Raspberry Pi 5",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "VCPKG_TARGET_TRIPLET": "arm64-linux-rpi5",
+        "VCPKG_HOST_TRIPLET": "x64-linux",
+        "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/aarch64-rpi5.cmake",
+        "CLASS_T4_SANITIZERS": "OFF",
+        "CLASS_T4_BUILD_TESTS": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    { "name": "host-debug", "configurePreset": "host-debug" },
+    { "name": "rpi5-release", "configurePreset": "rpi5-release" }
+  ],
+  "testPresets": [
+    {
+      "name": "host-debug",
+      "configurePreset": "host-debug",
+      "output": { "outputOnFailure": true },
+      "execution": { "noTestsAction": "ignore" }
+    },
+    {
+      "name": "rpi5-release",
+      "configurePreset": "rpi5-release",
+      "output": { "outputOnFailure": true },
+      "execution": { "noTestsAction": "ignore" }
+    }
+  ]
+}

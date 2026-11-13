@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(~/.minisign/**)",
+      "Edit(~/.minisign/**)",
+      "Bash(ssh:*)",
+      "Bash(scp:*)",
+      "Bash(rsync:*)",
+      "Bash(sudo:*)"
+    ]
+  }
+}
