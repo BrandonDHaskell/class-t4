@@ -47,7 +47,7 @@ Six decisions shape the remaining M0 work; each has a recommended default.
 
 | # | Decision | Recommended | Blocks |
 | --- | --- | --- | --- |
-| D1 | How M0 reaches `main` | Separate `chore/m0-bootstrap` PR, then rebase the M1 branch onto it | M0-9 |
+| D1 | How M0 reaches `main` | Separate `chore/m0-bootstrap` PR, then merge `main` into the M1 branch (no rewrite of the pushed branch) | M0-9 |
 | D2 | Source of truth for specs | Repo files are canonical; a PR that deviates from a spec updates the spec in the same PR | M0-4, M0-8 |
 | D3 | Signing key | Dedicated `class-t4.key`, separate from the kernel `release.key` | M0-7 |
 | D4 | `NOTICE` text | Below | M0-5 |
@@ -184,7 +184,7 @@ C-07 reads the ruleset instead of test-pushing to `main`, because a test push wo
 
 M0 is done when the checklist below is complete; you are the approver, and M1 work resumes on the updated branch right after.
 
-- [ ] Decisions D1 to D6 confirmed (M0-1)
+- [x] Decisions D1 to D6 confirmed (M0-1)
 - [ ] All 12 tasks complete
 - [ ] Checks C-01 to C-11 pass
 - [ ] Project plan updated: M0 marked done, M1 status reflects the reconciled M1 doc
@@ -203,8 +203,8 @@ The main M0 risk is drift: the planning docs and the code already disagree in fi
 
 **Open items for you**
 
-- [ ] Confirm D1 to D6, or change any of them
-- [ ] Confirm the `NOTICE` copyright holder name
+- [x] Confirm D1 to D6, or change any of them
+- [x] Confirm the `NOTICE` copyright holder name
 - [ ] Check whether `main` already has a ruleset or branch protection
 
 ## Change log
@@ -214,3 +214,4 @@ The main M0 risk is drift: the planning docs and the code already disagree in fi
 | 2026-11-12 | Created from an audit of `main` and `feat/m1-walking-skeleton` |
 | 2026-11-12 | Cross-repo review applied: M0-12 repo hygiene gates added (gitleaks with a private-address rule, push protection, v\* tag ruleset, SHA-pinned actions); admin bypass removed from the main ruleset |
 | 2026-11-12 | `docs/milestones/m1-walking-skeleton.md` removed; the M1 doc is the canonical M1 spec, so M0-4 no longer regenerates a separate file |
+| 2026-11-12 | M0-1: D1 to D6 confirmed with the recommended defaults; D1 changed from rebase to merge to match M0-9; `NOTICE` holder confirmed as Brandon Haskell |

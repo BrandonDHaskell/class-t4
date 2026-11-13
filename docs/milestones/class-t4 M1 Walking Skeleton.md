@@ -502,7 +502,7 @@ Five items stand between this doc and kickoff; each has a default this doc alrea
 
 - [ ] **Confirm the proposed specifications** (config, `/health`, metrics, logging, CLI, versioning, tarball). Default: accept as written.
 - [ ] **clang-tidy gate:** blocking from day one (current spec) or report-only until the end of M1. Default: report-only until H3 lands, then blocking.
-- [ ] **Signing key:** dedicated `class-t4.key` or the existing release key. Default: dedicated; G3 assumes `keys/class-t4.pub`.
+- [x] **Signing key:** decided: dedicated `class-t4.key` (M0 D3); G3 uses `keys/class-t4.pub`.
 - [ ] **GitHub token on lovelace for G3:** fine-grained, `class-t4` contents read and write only, passed as `GH_TOKEN`. Default: yes.
 - [ ] **Capacity and target date:** your weekly hours for class-t4 and a target for `v0.1.0`. Needed to date the phases.
 

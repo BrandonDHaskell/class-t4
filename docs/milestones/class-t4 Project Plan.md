@@ -110,7 +110,7 @@ The two risks most likely to stall the plan are both in M1: the hand-built toolc
 
 Seven decisions shape this plan; each has a proposed default to confirm or override.
 
-- [ ] **class-t4 signing key:** reuse the existing release key or generate a dedicated class-t4 key. Default: dedicated key, so the kernel key never signs app releases.
+- [x] **class-t4 signing key:** decided: dedicated class-t4 key, so the kernel key never signs app releases (M0 D3).
 
 * [ ] **Milestone shape:** confirm M0 to M5 as drafted, one tagged release per milestone. Default: yes.
 * [ ] **Work tracking:** this doc only, or mirror milestones as GitHub Milestones and Issues. Default: GitHub Issues per task, this doc for the roadmap.
@@ -127,3 +127,4 @@ Resolved since the reference doc: the ops repo is crows-nest, the generic Pi 5 r
 | --- | --- |
 | 2026-11-12 | Plan created from the repo state and the reference doc. minisign tooling confirmed in place on lovelace and epiphany |
 | 2026-11-12 | Cross-repo review applied: superseded checklists removed; Google moves to the ICS provider and M4 ends at v0.6.0; token key copy lives in the password manager; TLS issuance and provider order decided; joint order with crows-nest added |
+| 2026-11-12 | Signing key decided: dedicated class-t4 key (M0 D3) |
